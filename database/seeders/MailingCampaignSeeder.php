@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Database\Seeders;
 
@@ -12,6 +13,6 @@ class MailingCampaignSeeder extends Seeder
      */
     public function run(): void
     {
-        MailingCampaign::factory()->count(30)->create();
+        MailingCampaign::factory()->count(5)->create();
     }
 }

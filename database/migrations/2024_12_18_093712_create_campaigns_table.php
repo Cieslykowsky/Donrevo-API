@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -16,7 +17,7 @@ return new class extends Migration
             $table->foreignId('group_id')->constrained()->onDelete('cascade');
             $table->string('name', 100);
             $table->text('description')->nullable();
-            $table->boolean('is_active')->default('false');
+            $table->boolean('is_active')->default(false);
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->timestamps();

@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use App\Models\MailTemplate;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,13 +18,13 @@ class MailTemplateResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'name' => $this->name,
-            'subject' => $this->subject,
-            'content' => $this->content,
-            'description' => $this->description,
-            'is_active' => $this->is_active,
-            'created_at' => $this->created_at->toDateTimeString(),
-            'updated_at' => $this->updated_at->toDateTimeString(),
+            MailTemplate::FIELD_NAME => $this->name,
+            MailTemplate::FIELD_SUBJECT => $this->subject,
+            MailTemplate::FIELD_CONTENT => $this->content,
+            MailTemplate::FIELD_DESCRIPTION => $this->description,
+            MailTemplate::FIELD_IS_ACTIVE => $this->is_active,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

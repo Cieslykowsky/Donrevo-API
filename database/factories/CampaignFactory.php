@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Database\Factories;
 
@@ -25,12 +26,12 @@ class CampaignFactory extends Factory
         $endDate = $this->faker->dateTimeBetween($startDate, '+3 years');
 
         return [
-            'group_id' => Group::inRandomOrder()->first()->id,
-            'name' => $this->faker->word(),
-            'description' => $this->faker->text(),
-            'is_active' => $this->faker->boolean(),
-            'start_date' => $startDate,
-            'end_date' => $endDate->format('Y-m-d'),
+            Campaign::FIELD_GROUP_ID => Group::inRandomOrder()->first()->id,
+            Campaign::FIELD_NAME => $this->faker->word(),
+            Campaign::FIELD_DESCRIPTION => $this->faker->text(),
+            Campaign::FIELD_IS_ACTIVE => $this->faker->boolean(),
+            Campaign::FIELD_START_DATE => $startDate->format('Y-m-d'),
+            Campaign::FIELD_END_DATE => $endDate->format('Y-m-d'),
         ];
     }
 }

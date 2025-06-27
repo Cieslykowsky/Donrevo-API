@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -14,7 +15,7 @@ return new class extends Migration
         Schema::create('mailing_campaigns', function (Blueprint $table) {
             $table->id();
             $table->foreignId('campaign_id')->constrained()->onDelete('cascade');
-            $table->foreignId('template_id')->nullable()->constrained('mail_templates')->onDelete('set null');
+            $table->foreignId('mail_template_id')->nullable()->constrained('mail_templates')->onDelete('set null');
             $table->string('name', 100);
             $table->string('subject', 200)->nullable();
             $table->text('content')->nullable();

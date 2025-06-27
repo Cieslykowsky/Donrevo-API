@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Models\MailingCampaign;
 use Illuminate\Foundation\Http\FormRequest;
 
 class MailingCampaignRequest extends FormRequest
@@ -22,14 +24,14 @@ class MailingCampaignRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'campaign_id' => 'required|exists:campaigns,id',
-            'template_id' => 'nullable|exists:mail_templates,id',
-            'name' => 'required|string|max:100',
-            'subject' => 'nullable|string|max:200',
-            'content' => 'nullable|string',
-            'is_active' => 'nullable|boolean',
-            'scheduled_at' => 'nullable|date',
-            'sent_at' => 'nullable|date',
+            MailingCampaign::FIELD_CAMPAIGN_ID => 'required|exists:campaigns,id',
+            MailingCampaign::FIELD_MAIL_TEMPLATE_ID => 'nullable|exists:mail_templates,id',
+            MailingCampaign::FIELD_NAME => 'required|string|max:100',
+            MailingCampaign::FIELD_SUBJECT => 'nullable|string|max:200',
+            MailingCampaign::FIELD_CONTENT => 'nullable|string',
+            MailingCampaign::FIELD_IS_ACTIVE => 'nullable|boolean',
+            MailingCampaign::FIELD_SCHEDULED_AT => 'nullable|date',
+            MailingCampaign::FIELD_SENT_AT => 'nullable|date',
         ];
     }
 }

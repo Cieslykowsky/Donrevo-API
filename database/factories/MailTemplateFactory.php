@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Database\Factories;
 
@@ -17,11 +18,11 @@ class MailTemplateFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->unique()->words(3, true),
-            'subject' => $this->faker->sentence(6),
-            'content' => $this->faker->paragraphs(3, true),
-            'description' => $this->faker->optional()->sentence(10),
-            'is_active' => $this->faker->boolean(90),
+            MailTemplate::FIELD_NAME => $this->faker->unique()->words(3, true),
+            MailTemplate::FIELD_SUBJECT => $this->faker->sentence(6),
+            MailTemplate::FIELD_CONTENT => $this->faker->paragraphs(3, true),
+            MailTemplate::FIELD_DESCRIPTION => $this->faker->optional()->sentence(10),
+            MailTemplate::FIELD_IS_ACTIVE => $this->faker->boolean(90),
         ];
     }
 }

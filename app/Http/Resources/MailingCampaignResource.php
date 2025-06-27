@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use App\Models\MailingCampaign;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,16 +18,16 @@ class MailingCampaignResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'campaign_id' => $this->campaign_id,
-            'template_id' => $this->template_id,
-            'name' => $this->name,
-            'subject' => $this->subject,
-            'content' => $this->content,
-            'is_active' => $this->is_active,
-            'scheduled_at' => optional($this->scheduled_at)->toDateTimeString(),
-            'sent_at' => optional($this->sent_at)->toDateTimeString(),
-            'created_at' => $this->created_at->toDateTimeString(),
-            'updated_at' => $this->updated_at->toDateTimeString(),
+            MailingCampaign::FIELD_CAMPAIGN_ID => $this->campaign_id,
+            MailingCampaign::FIELD_MAIL_TEMPLATE_ID => $this->mail_template_id,
+            MailingCampaign::FIELD_NAME => $this->name,
+            MailingCampaign::FIELD_SUBJECT => $this->subject,
+            MailingCampaign::FIELD_CONTENT => $this->content,
+            MailingCampaign::FIELD_IS_ACTIVE => $this->is_active,
+            MailingCampaign::FIELD_SCHEDULED_AT => $this->scheduled_at,
+            MailingCampaign::FIELD_SENT_AT => $this->sent_at,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

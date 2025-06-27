@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Database\Seeders;
 
@@ -12,6 +13,6 @@ class GroupSeeder extends Seeder
      */
     public function run(): void
     {
-        Group::factory(10)->create();
+        Group::factory(5)->create();
     }
 }

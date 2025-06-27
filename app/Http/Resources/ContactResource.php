@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,19 +18,19 @@ class ContactResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'email' => $this->email,
-            'phone' => $this->phone,
-            'street' => $this->street,
-            'house_number' => $this->house_number,
-            'postal_code' => $this->postal_code,
-            'city' => $this->city,
-            'country' => $this->country,
-            'is_active' => $this->is_active,
-            'notes' => $this->notes,
-            'created_at' => $this->created_at->toDateTimeString(),
-            'updated_at' => $this->updated_at->toDateTimeString(),
+            Contact::FIELD_FIRST_NAME => $this->first_name,
+            Contact::FIELD_LAST_NAME => $this->last_name,
+            Contact::FIELD_EMAIL => $this->email,
+            Contact::FIELD_PHONE => $this->phone,
+            Contact::FIELD_STREET => $this->street,
+            Contact::FIELD_HOUSE_NUMBER => $this->house_number,
+            Contact::FIELD_POSTAL_CODE => $this->postal_code,
+            Contact::FIELD_CITY => $this->city,
+            Contact::FIELD_COUNTRY => $this->country,
+            Contact::FIELD_IS_ACTIVE => $this->is_active,
+            Contact::FIELD_NOTES => $this->notes,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

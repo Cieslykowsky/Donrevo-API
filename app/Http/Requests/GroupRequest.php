@@ -1,9 +1,10 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Models\Group;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
 class GroupRequest extends FormRequest
 {
@@ -20,11 +21,11 @@ class GroupRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
-    public function rules()
+    public function rules(): array
     {
         return [
-            'name' => 'required|string|max:255',
-            'description' => 'sometimes|nullable|string',
+            Group::FIELD_NAME => 'required|string|max:255',
+            Group::FIELD_DESCRIPTION => 'nullable|string',
         ];
     }
 }

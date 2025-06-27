@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Models\Campaign;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CampaignRequest extends FormRequest
@@ -24,12 +26,12 @@ class CampaignRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'group_id' => 'required|integer|exists:groups,id',
-            'name' => 'required|string|max:100',
-            'description' => 'nullable|string',
-            'is_active' => 'boolean',
-            'start_date' => 'nullable|date',
-            'end_date' => 'nullable|date|after_or_equal:start_date',
+            Campaign::FIELD_GROUP_ID => 'required|integer|exists:groups,id',
+            Campaign::FIELD_NAME => 'required|string|max:100',
+            Campaign::FIELD_DESCRIPTION => 'nullable|string',
+            Campaign::FIELD_IS_ACTIVE => 'boolean',
+            Campaign::FIELD_START_DATE => 'nullable|date',
+            Campaign::FIELD_END_DATE => 'nullable|date|after_or_equal:start_date',
         ];
     }
 }

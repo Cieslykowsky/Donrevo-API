@@ -1,7 +1,9 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Resources;
 
+use App\Models\Campaign;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
@@ -16,14 +18,14 @@ class CampaignResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'group_id' => $this->group_id,
-            'name' => $this->name,
-            'description' => $this->description,
-            'is_active' => $this->is_active,
-            'start_date' => $this->start_date,
-            'end_date' => $this->end_date,
-            'created_at' => $this->created_at->toDateTimeString(),
-            'updated_at' => $this->updated_at->toDateTimeString(),
+            Campaign::FIELD_GROUP_ID => $this->group_id,
+            Campaign::FIELD_NAME => $this->name,
+            Campaign::FIELD_DESCRIPTION => $this->description,
+            Campaign::FIELD_IS_ACTIVE => $this->is_active,
+            Campaign::FIELD_START_DATE => $this->start_date,
+            Campaign::FIELD_END_DATE => $this->end_date,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
         ];
     }
 }

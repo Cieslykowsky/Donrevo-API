@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -9,19 +10,22 @@ class MailTemplate extends Model
 {
     use HasFactory;
 
-    protected $table = 'mail_templates';
-
-    protected $fillable = [
-        'name',
-        'subject',
-        'content',
-        'description',
-        'is_active',
+    public const TABLE = 'mail_templates';
+    public const FIELDS = [
+       self::FIELD_NAME,
+       self::FIELD_SUBJECT,
+       self::FIELD_CONTENT,
+       self::FIELD_DESCRIPTION,
+       self::FIELD_IS_ACTIVE,
     ];
+    public const FIELD_NAME = 'name';
+    public const FIELD_SUBJECT = 'subject';
+    public const FIELD_CONTENT = 'content';
+    public const FIELD_DESCRIPTION = 'description';
+    public const FIELD_IS_ACTIVE = 'is_active';
 
-    protected $casts = [
-        'is_active' => 'boolean',
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
+    protected $table = self::TABLE;
+
+    protected $fillable = self::FIELDS;
+
 }

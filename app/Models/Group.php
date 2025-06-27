@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Models;
 
@@ -9,15 +10,15 @@ class Group extends Model
 {
     use HasFactory;
 
-    protected $table = 'groups';
-
-    protected $fillable = [
-        'name',
-        'description',
+    public const TABLE = 'groups';
+    public const FIELD_NAME = 'name';
+    public const FIELD_DESCRIPTION = 'description';
+    public const FIELDS = [
+        self::FIELD_NAME,
+        self::FIELD_DESCRIPTION,
     ];
 
-    protected $casts = [
-        'created_at' => 'datetime',
-        'updated_at' => 'datetime',
-    ];
+    protected $table = self::TABLE;
+
+    protected $fillable = self::FIELDS;
 }

@@ -1,0 +1,26 @@
+# version: "3.9"
+
+services:
+  donrevo-api:
+    container_name: donrevo-api
+    image: donrevo-api:1.0.0
+    build: .
+    ports:
+      - "8000:8000"
+    env_file:
+      - .env.testing
+    depends_on:
+      - db
+  
+  db:
+    container_name: db
+    image: postgres:12
+    ports:
+      - "5432:5432"
+    env_file:
+      - .env.testing
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata: {}

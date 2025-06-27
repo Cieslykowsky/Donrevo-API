@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Database\Factories;
 
@@ -20,8 +21,8 @@ class GroupFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->word(),
-            'description' => $this->faker->sentence(),
+            Group::FIELD_NAME => $this->faker->word(),
+            Group::FIELD_DESCRIPTION => $this->faker->sentence(),
         ];
     }
 }

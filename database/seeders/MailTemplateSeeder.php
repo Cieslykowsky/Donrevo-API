@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace Database\Seeders;
 
@@ -12,6 +13,6 @@ class MailTemplateSeeder extends Seeder
      */
     public function run(): void
     {
-        MailTemplate::factory()->count(20)->create();
+        MailTemplate::factory()->count(5)->create();
     }
 }
