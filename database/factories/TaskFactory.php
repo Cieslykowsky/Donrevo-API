@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace Database\Factories;
 
+use App\Enums\TaskPriority;
+use App\Enums\TaskStatus;
 use App\Models\Task;
 use App\Models\Campaign;
 use App\Models\Contact;
@@ -30,11 +32,8 @@ class TaskFactory extends Factory
             Task::FIELD_TITLE => $this->faker->sentence(4),
             Task::FIELD_DESCRIPTION => $this->faker->optional()->paragraphs(3, true),
             Task::FIELD_DUE_DATE => $dueDate ? $dueDate->format('Y-m-d H:i:s') : null,
-            Task::FIELD_PRIORITY => $this->faker->randomElement(['low', 'medium', 'high']),
-            Task::FIELD_STATUS => $this->faker->randomElement([
-                'todo', 'in_progress', 'on_hold', 'cancelled', 'ready_for_review',
-                'in_review', 'approved', 'rejected', 'deferred', 'testing', 'completed'
-            ]),
+            Task::FIELD_PRIORITY => $this->faker->randomElement(TaskPriority::cases())->value,
+            Task::FIELD_STATUS => $this->faker->randomElement(TaskStatus::cases())->value,
             Task::FIELD_ASSIGNED_TO => User::inRandomOrder()->first()?->id,
         ];
     }

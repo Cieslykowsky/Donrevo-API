@@ -24,8 +24,8 @@ class GroupRequest extends FormRequest
     public function rules(): array
     {
         return [
-            Group::FIELD_NAME => 'required|string|max:255',
-            Group::FIELD_DESCRIPTION => 'nullable|string',
+            Group::FIELD_NAME => ['required', 'string', 'max:255'],
+            Group::FIELD_DESCRIPTION => ['nullable', 'string'],
         ];
     }
 }

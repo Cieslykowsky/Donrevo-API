@@ -24,11 +24,11 @@ class MailTemplateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            MailTemplate::FIELD_NAME => 'required|string|max:100',
-            MailTemplate::FIELD_SUBJECT => 'required|string|max:200',
-            MailTemplate::FIELD_CONTENT => 'required|string',
-            MailTemplate::FIELD_DESCRIPTION => 'nullable|string',
-            MailTemplate::FIELD_IS_ACTIVE => 'nullable|boolean',
+            MailTemplate::FIELD_NAME => ['required', 'string', 'max:100'],
+            MailTemplate::FIELD_SUBJECT => ['required', 'string', 'max:200'],
+            MailTemplate::FIELD_CONTENT => ['required', 'string'],
+            MailTemplate::FIELD_DESCRIPTION => ['nullable', 'string'],
+            MailTemplate::FIELD_IS_ACTIVE => ['nullable', 'boolean'],
         ];
     }
 }

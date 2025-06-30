@@ -3,8 +3,14 @@ declare(strict_types=1);
 
 namespace App\Http\Requests;
 
+use App\Enums\TaskPriority;
+use App\Enums\TaskStatus;
+use App\Models\Campaign;
+use App\Models\Contact;
+use App\Models\MailingCampaign;
 use App\Models\Task;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class TaskRequest extends FormRequest
 {
@@ -24,15 +30,15 @@ class TaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            Task::FIELD_CAMPAIGN_ID => 'nullable|exists:campaigns,id',
-            Task::FIELD_CONTACT_ID => 'nullable|exists:contacts,id',
-            Task::FIELD_MAILING_CAMPAIGN_ID => 'nullable|exists:mailing_campaigns,id',
-            Task::FIELD_TITLE => 'required|string|max:200',
-            Task::FIELD_DESCRIPTION => 'nullable|string',
-            Task::FIELD_DUE_DATE => 'nullable|date',
-            Task::FIELD_PRIORITY => 'required|in:low,medium,high',
-            Task::FIELD_STATUS => 'required|in:todo,in_progress,on_hold,cancelled,ready_for_review,in_review,approved,rejected,deferred,testing,completed',
-            Task::FIELD_ASSIGNED_TO => 'nullable|exists:users,id',
+            Task::FIELD_CAMPAIGN_ID => ['nullable', Rule::exists(Campaign::TABLE, 'id')],
+            Task::FIELD_CONTACT_ID => ['nullable', Rule::exists(Contact::TABLE, 'id')],
+            Task::FIELD_MAILING_CAMPAIGN_ID => ['nullable', Rule::exists(MailingCampaign::TABLE, 'id')],
+            Task::FIELD_TITLE => ['required', 'string', 'max:200'],
+            Task::FIELD_DESCRIPTION => ['nullable', 'string'],
+            Task::FIELD_DUE_DATE => ['nullable', 'date'],
+            Task::FIELD_PRIORITY => ['required', Rule::enum(TaskPriority::class)],
+            Task::FIELD_STATUS => ['required', Rule::enum(TaskStatus::class)],
+            Task::FIELD_ASSIGNED_TO => ['nullable', Rule::exists('users', 'id')],
         ];
     }
 }

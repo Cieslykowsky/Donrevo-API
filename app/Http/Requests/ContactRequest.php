@@ -27,21 +27,21 @@ class ContactRequest extends FormRequest
     public function rules(): array
     {
         return [
-            Contact::FIELD_FIRST_NAME => 'nullable|string|max:50',
-            Contact::FIELD_LAST_NAME => 'nullable|string|max:50',
+            Contact::FIELD_FIRST_NAME => ['nullable', 'string', 'max:50'],
+            Contact::FIELD_LAST_NAME => ['nullable', 'string', 'max:50'],
             Contact::FIELD_EMAIL => [
                 'required',
                 'email',
                 Rule::unique(Contact::TABLE, Contact::FIELD_EMAIL)->ignore($this->route('contact')),
             ],
-            Contact::FIELD_PHONE => 'nullable|string|max:20',
-            Contact::FIELD_STREET => 'nullable|string|max:255',
-            Contact::FIELD_HOUSE_NUMBER => 'nullable|string|max:50',
-            Contact::FIELD_POSTAL_CODE => 'nullable|string|max:20',
-            Contact::FIELD_CITY => 'nullable|string|max:100',
-            Contact::FIELD_COUNTRY => 'nullable|string|max:100',
-            Contact::FIELD_IS_ACTIVE => 'nullable|boolean',
-            Contact::FIELD_NOTES => 'nullable|string',
+            Contact::FIELD_PHONE => ['nullable', 'string', 'max:20'],
+            Contact::FIELD_STREET => ['nullable', 'string', 'max:255'],
+            Contact::FIELD_HOUSE_NUMBER => ['nullable', 'string', 'max:50'],
+            Contact::FIELD_POSTAL_CODE => ['nullable', 'string', 'max:20'],
+            Contact::FIELD_CITY => ['nullable', 'string', 'max:100'],
+            Contact::FIELD_COUNTRY => ['nullable', 'string', 'max:100'],
+            Contact::FIELD_IS_ACTIVE => ['nullable', 'boolean'],
+            Contact::FIELD_NOTES => ['nullable', 'string'],
         ];
     }
 }
